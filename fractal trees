@@ -1,0 +1,36 @@
+float angle = 0;
+float rotation = 0;
+float thing = 0;
+
+void setup(){
+  size(600,600);
+}
+void draw(){
+  rotation = map(mouseY,0,height,0.5,0.75);
+  angle = map(mouseX,0,width,TWO_PI, PI);
+ 
+
+  stroke(255);
+  translate(300,height/1.2);
+  background(0);
+  branch(100);
+  
+}
+
+void branch(float x){
+  line(0,0,0,-x);
+  translate(0, -x);
+  if(x > 4){
+    
+    push();
+    rotate(angle);
+    branch(x * rotation);
+    pop();
+    push();
+    rotate(-angle);
+    branch(x * rotation);
+    pop();
+    
+  }
+  thing += 0.1;
+}
